@@ -17,15 +17,17 @@ export class FormDestinoViajeComponent implements OnInit {
       nombre: [''],
       url: ['']
     });
-   }
+   
+    this.fg.valueChanges.subscribe((form: any) => {
+      console.log(`cambio el formulario ${form}`);
+    }) 
+  }
 
   ngOnInit(): void {
   }
-
 
   guardar(nombre: string, url: string): boolean {
     this.onItemAdded.emit(new DestinoViaje(nombre, url));
     return false;
   }
-
 }

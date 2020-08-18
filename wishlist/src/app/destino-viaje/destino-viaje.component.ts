@@ -24,5 +24,4 @@ export class DestinoviajeComponent implements OnInit {
     this.clicked.emit(this.destino);
     return false;
   }
-
 }

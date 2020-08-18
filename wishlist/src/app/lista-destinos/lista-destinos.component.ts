@@ -10,7 +10,7 @@ export class ListaDestinosComponent implements OnInit {
   @Output() onItemAdded: EventEmitter<DestinoViaje>
 
 
-  constructor( destinosApiClient: DestinosApiClient) {
+  constructor(public destinosApiClient: DestinosApiClient) {
     this.onItemAdded = new EventEmitter();
   }
 
@@ -18,11 +18,11 @@ export class ListaDestinosComponent implements OnInit {
   }
 
   agregar(d: DestinoViaje) {
-    this.destinosApiClient(d);
+    this.destinosApiClient.add(d);
     this.onItemAdded.emit(d);
   }
 
-  elegido(d: DestinoViaje) {
+  elegir(d: DestinoViaje) {
     this.destinosApiClient.forEach(x => x.setSelected(false));
     d.setSelected(true);
   }
