@@ -17,7 +17,12 @@ export class FormDestinoViajeComponent implements OnInit {
       nombre: [''],
       url: ['']
     });
+
+    this.fg.valueChanges.subscribe((form: any) => {
+      console.log('registro en el formulario');
+    });
   }
+
 
   ngOnInit(): void {
   }
