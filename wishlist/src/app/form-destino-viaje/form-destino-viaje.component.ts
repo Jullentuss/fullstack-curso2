@@ -1,6 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+<<<<<<< HEAD
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { DestinoViaje } from '../models/destino-viaje.model';
+=======
+import { DestinoViaje } from '../models/destino-viaje.model';
+import { FormGroup, FormBuilder } from '@angular/forms';
+>>>>>>> arreglos-rutas
 
 @Component({
   selector: 'app-form-destino-viaje',
@@ -10,6 +15,7 @@ import { DestinoViaje } from '../models/destino-viaje.model';
 export class FormDestinoViajeComponent implements OnInit {
   @Output() onItemAdded: EventEmitter<DestinoViaje>;
   fg: FormGroup;
+<<<<<<< HEAD
 
   constructor(fb: FormBuilder) {
     this.onItemAdded = new EventEmitter();
@@ -22,6 +28,21 @@ export class FormDestinoViajeComponent implements OnInit {
       console.log(`cambio el formulario ${form}`);
     }) 
   }
+=======
+
+  constructor(fb: FormBuilder) { 
+    this.onItemAdded = new EventEmitter();
+    this.fg = fb.group({
+      nombre: [''],
+      url: ['']
+    });
+
+    this.fg.valueChanges.subscribe((form: any) => {
+      console.log('registro en el formulario');
+    });
+  }
+
+>>>>>>> arreglos-rutas
 
   ngOnInit(): void {
   }
@@ -30,4 +51,8 @@ export class FormDestinoViajeComponent implements OnInit {
     this.onItemAdded.emit(new DestinoViaje(nombre, url));
     return false;
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> arreglos-rutas
 }
