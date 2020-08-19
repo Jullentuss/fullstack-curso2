@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'wishlist';
+  title = 'Wishlist';
+  time = new Observable(o => {
+    setInterval(() => o.next(
+      new Date().getHours().toString() + ":" + 
+      new Date().getMinutes().toString() + ":" +
+      new Date().getSeconds().toString()
+      ), 1000);
+  });
 }

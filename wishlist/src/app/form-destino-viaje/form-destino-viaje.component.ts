@@ -1,6 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DestinoViaje } from '../models/destino-viaje.model';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, FormControl } from '@angular/forms';
+import { fromEvent } from 'rxjs';
+import { ajax, AjaxResponse } from 'rxjs/ajax';
+import { filter, map, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form-destino-viaje',
@@ -11,6 +14,7 @@ export class FormDestinoViajeComponent implements OnInit {
   @Output() onItemAdded: EventEmitter<DestinoViaje>;
   fg: FormGroup;
   minLong = 3;
+  searchResults: string[];
 
   constructor(fb: FormBuilder) {
     this.onItemAdded = new EventEmitter();
@@ -19,16 +23,26 @@ export class FormDestinoViajeComponent implements OnInit {
         Validators.required,
         this.validarNombre(this.minLong)
       ])],
-        url: ['', Validators.required]
+      url: ['', Validators.required]
     });
 
     this.fg.valueChanges.subscribe((form: any) => {
-      console.log('registro en el formulario' + form.toString());
+      console.log('registro en el formulario ', form);
     });
   }
 
-
   ngOnInit(): void {
+    const elemNombre = <HTMLInputElement>document.getElementById('nombre');
+    fromEvent(elemNombre, 'input')
+      .pipe(
+        map((e: KeyboardEvent) => (e.target as HTMLInputElement).value),
+        filter(text => text.length > 3),
+        debounceTime(200),
+        distinctUntilChanged(),
+        switchMap(() => ajax('/assets/datos.json'))
+      ).subscribe(AjaxResponse => {
+        this.searchResults =  AjaxResponse.response;
+      })
   }
 
   guardar(nombre: string, url: string): boolean {
