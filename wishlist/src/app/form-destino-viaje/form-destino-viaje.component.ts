@@ -21,7 +21,8 @@ export class FormDestinoViajeComponent implements OnInit {
     this.fg = fb.group({
       nombre: ['', Validators.compose([
         Validators.required,
-        this.validarNombre(this.minLong)
+        this.validarNombre(this.minLong),
+        this.validarLogitud
       ])],
       url: ['', Validators.required]
     });
@@ -41,7 +42,7 @@ export class FormDestinoViajeComponent implements OnInit {
         distinctUntilChanged(),
         switchMap(() => ajax('/assets/datos.json'))
       ).subscribe(AjaxResponse => {
-        this.searchResults =  AjaxResponse.response;
+        this.searchResults = AjaxResponse.response;
       })
   }
 
@@ -55,5 +56,10 @@ export class FormDestinoViajeComponent implements OnInit {
       const L = control.value.toString().trim().length;
       return (L > 0 && L < ml) ? { minlong: true } : null;
     }
+  }
+
+  validarLogitud(control: FormControl): { [s: string]: boolean } {
+    const L = control.value.toString().trim().length;
+    return (L < 4) ? {longMin: true} : null; 
   }
 }

@@ -7,7 +7,7 @@
     </label>
     <input type="text" class="form-control" id="nombre" placeholder="Ingresar nombre..."
       [formControl]="fg.controls['nombre']">
-      <ul>
+      <ul class="alert alert-info" role="alert" *ngIf="!fg.controls['nombre'].hasError('longMin')">
         <li *ngFor="let r of searchResults;">{{ r }}</li>
       </ul>
   </div>
