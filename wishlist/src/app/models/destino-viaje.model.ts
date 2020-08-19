@@ -3,6 +3,8 @@ export class DestinoViaje {
   private imagenUrl: string;
   private selected: boolean;
   private servicios: string[]; 
+  //Corregir este atributo
+  id: string;
 
   constructor(n: string, u: string) {
     this.nombre = n;

@@ -3,6 +3,7 @@
   <div class="form-group">
     <label for="nombre">Nombre
       <span class="badge badge-pill badge-warning" *ngIf="!fg.controls['nombre'].valid">Requerido</span>
+      <span class="badge badge-pill badge-info" *ngIf="fg.controls['nombre'].hasError('minlong')">longitud mayor a {{ minLong }}</span>
     </label>
     <input type="text" class="form-control" id="nombre" placeholder="Ingresar nombre..."
       [formControl]="fg.controls['nombre']">

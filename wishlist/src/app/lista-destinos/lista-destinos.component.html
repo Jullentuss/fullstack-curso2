@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-md-6 offset-md-3"><span class="anchor" id="formLogin"></span>
       <!--form card login with validation feedback -->
-      <div class="card card-outline-secondary">
-        <div class="card-header">
-          <h3 class="mb-0">Wishlist</h3>
+      <div class="card  card-outline-secondary">
+        <div class="card-header bg-secondary">
+          <h3 class="mb-0 card-title text-white">Destinos</h3>
         </div>
         <div class="card-body">
           <app-form-destino-viaje (onItemAdded)="agregar($event)"></app-form-destino-viaje>
@@ -14,11 +14,14 @@
   </div>
   <hr class="mb-5">
   <div class="row row-flex">
-    <app-destino-viaje 
-      *ngFor="let d of destinoApiClient.getAll(); let i = index"
-      [destino]="d"
-      [posicion]="i+1"
-      (clicked)="elegir(d)"
-      ></app-destino-viaje>
+    <app-destino-viaje *ngFor="let d of destinoApiClient.getAll(); let i = index" [destino]="d" [posicion]="i+1"
+      (clicked)="elegir(d)"></app-destino-viaje>
+  </div>
+  <hr class="mb-5">
+  <div class="row row-flex">
+    <h5>Actividad</h5>
+    <ul>
+      <li *ngFor="let u of updates;">{{ u }}</li>
+    </ul>
   </div>
 </div>
