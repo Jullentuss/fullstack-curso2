@@ -1,11 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-<<<<<<< HEAD
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { DestinoViaje } from '../models/destino-viaje.model';
-=======
-import { DestinoViaje } from '../models/destino-viaje.model';
-import { FormGroup, FormBuilder } from '@angular/forms';
->>>>>>> arreglos-rutas
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-destino-viaje',
@@ -15,26 +10,12 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class FormDestinoViajeComponent implements OnInit {
   @Output() onItemAdded: EventEmitter<DestinoViaje>;
   fg: FormGroup;
-<<<<<<< HEAD
-
-  constructor(fb: FormBuilder) {
-    this.onItemAdded = new EventEmitter();
-    this.fg = fb.group({
-      nombre: [''],
-      url: ['']
-    });
-   
-    this.fg.valueChanges.subscribe((form: any) => {
-      console.log(`cambio el formulario ${form}`);
-    }) 
-  }
-=======
 
   constructor(fb: FormBuilder) { 
     this.onItemAdded = new EventEmitter();
     this.fg = fb.group({
-      nombre: [''],
-      url: ['']
+      nombre: ['', Validators.required],
+      url: ['', Validators.required]
     });
 
     this.fg.valueChanges.subscribe((form: any) => {
@@ -42,7 +23,6 @@ export class FormDestinoViajeComponent implements OnInit {
     });
   }
 
->>>>>>> arreglos-rutas
 
   ngOnInit(): void {
   }
@@ -51,8 +31,4 @@ export class FormDestinoViajeComponent implements OnInit {
     this.onItemAdded.emit(new DestinoViaje(nombre, url));
     return false;
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> arreglos-rutas
 }

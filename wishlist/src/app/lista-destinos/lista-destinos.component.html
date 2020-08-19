@@ -4,7 +4,7 @@
       <!--form card login with validation feedback -->
       <div class="card card-outline-secondary">
         <div class="card-header">
-          <h3 class="mb-0">Whishlist</h3>
+          <h3 class="mb-0">Wishlist</h3>
         </div>
         <div class="card-body">
           <app-form-destino-viaje (onItemAdded)="agregar($event)"></app-form-destino-viaje>
@@ -17,7 +17,7 @@
     <app-destino-viaje 
       *ngFor="let d of destinoApiClient.getAll(); let i = index"
       [destino]="d"
-      [posicion]="i"
+      [posicion]="i+1"
       (clicked)="elegir(d)"
       ></app-destino-viaje>
   </div>
